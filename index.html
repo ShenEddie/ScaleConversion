@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,
+    maximum-scale=1.0, user-scalable=no"/>
+    <title>圣诞节啦</title>
+</head>
+<body>
+
+<h2 style="text-align: center; width: auto">大兔兔牌比例尺转换器 v1.0</h2>
+
+<hr/>
+
+<img align="center" src="http://pic5.nipic.com/20100122/3131754_211809031288_2.jpg" width="100%">
+
+<hr/>
+
+<p>请我的大宝贝输入比例尺；</p>
+
+<form style="text-align: center">
+    <fieldset>
+        <legend>比例尺</legend>
+        <input type="text" id="numerator" name="numerator" value="1" size="10%" readonly>
+        :
+        <input type="text" id="denominator" name="denominator" value="1" size="10%" pattern="[0-9]*">
+    </fieldset>
+</form>
+
+<br/>
+<hr/>
+
+<p>请我的大宝贝输入长度：</p>
+<form style="text-align: center">
+    原来的长度：
+    <input type="text" id="originalLength" name="originalLength" size="10%">
+    <select id="unitOriginal" name="unitOriginal">
+        <option value="mm">毫米</option>
+        <option value="cm">厘米</option>
+        <option value="m" selected>米</option>
+    </select>
+    <br/>
+    图上的长度：
+    <input type="text" id="newLength" name="newLength" size="10%">
+    <select id="unitNew" name="unitNew">
+        <option value="mm">毫米</option>
+        <option value="cm" selected>厘米</option>
+        <option value="m">米</option>
+    </select>
+</form>
+
+<br/>
+<div style="text-align: center">
+    <button name="originalToPaper" onclick="originalToPaper()">原来→图上</button>
+    <button name="paperToOriginal" onclick="paperToOriginal()">图上→原来</button>
+</div>
+
+
+
+
+<script>
+    function paperToOriginal() {
+        let lengthMeter = 0;
+        let newLength = document.getElementById("newLength").value;
+        let scaleRate = document.getElementById("denominator").value;
+        let lengthMeterOriginalScale;
+        let lengthOriginal;
+        newLength = parseFloat(newLength);
+        scaleRate = parseFloat(scaleRate);
+        lengthMeter = otherUnitToMeter(newLength, "unitNew");
+        lengthMeterOriginalScale = lengthMeter * scaleRate;
+        lengthOriginal = meterUnitToOther(lengthMeterOriginalScale, "unitOriginal")
+        document.getElementById("originalLength").value = lengthOriginal;
+    }
+
+    function originalToPaper() {
+        let lengthMeter = 0;
+        let originalLength = document.getElementById("originalLength").value;
+        let scaleRate = document.getElementById("denominator").value;
+        let lengthMeterNewScale;
+        let lengthPaper;
+        originalLength = parseFloat(originalLength);
+        scaleRate = parseFloat(scaleRate);
+        lengthMeter = otherUnitToMeter(originalLength, "unitOriginal");
+        lengthMeterNewScale = lengthMeterToNewScale(lengthMeter, scaleRate);
+        lengthPaper = meterUnitToOther(lengthMeterNewScale, "unitNew");
+        document.getElementById("newLength").value = lengthPaper;
+    }
+
+    function lengthMeterToNewScale(lengthMeter, scaleRate) {
+        return lengthMeter / scaleRate;
+    }
+
+    function meterUnitToOther(lengthMeterNewScale, select) {
+        let newUnit = getSelectedValue(select);
+        if (newUnit == "m") {
+            return lengthMeterNewScale;
+        } else if (newUnit == "cm") {
+            return lengthMeterNewScale * 100;
+        } else if (newUnit == "mm") {
+            return lengthMeterNewScale * 1000;
+        }
+    }
+
+    function otherUnitToMeter(originalLength, select) {
+        let originalUnit = getSelectedValue(select);
+        if (originalUnit == "m") {
+            return originalLength;
+        } else if (originalUnit == "cm") {
+            return originalLength / 100;
+        } else if (originalUnit == "mm") {
+            return originalLength / 1000;
+        }
+    }
+
+    function getSelectedValue(select) {
+        let obj = document.getElementById(select);
+        for (i = 0; i < obj.length; i++) {
+            if (obj[i].selected == true) {
+                let text = obj[i].value;
+                return text;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
