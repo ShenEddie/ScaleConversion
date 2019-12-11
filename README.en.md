@@ -3,7 +3,7 @@
 #### Description
 A simple website is created in this project to calculate scale by Html and JavaScript so that designers can concentrate on designing instead of wasting time on calculating.
 
-This project is calculated for my dear baby as a Christmas gift!
+This project is created for my dear baby as a Christmas gift!
 
 #### Software Architecture
 ```
