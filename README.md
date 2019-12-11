@@ -1,37 +1,36 @@
-# EddieShen
+# 大兔兔牌比例尺转换器
 
 #### 介绍
-大兔兔牌比例尺转换器！
 
-#### 软件架构
-软件架构说明
+本项目使用Html与JavaScript创建一个简单的静态网页用于计算比例尺，从而减少设计师在绘制图片时的计算工作，更加专注于设计。
+
+这个项目是为我心爱的大宝贝创建哒！悄悄地做一个圣诞礼物哦！哦耶！
+
+#### 项目结构
+
+```
+D:.
+│  christmas.jpg
+│  index.html
+│  LICENSE
+│  README.en.md
+│  README.md
+│  
+└─.idea
+        .gitignore
+        EddieShen.iml
+        misc.xml
+        modules.xml
+        vcs.xml
+```
 
 
-#### 安装教程
+#### 使用教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+访问网址[http://eddieshen.gitee.io/scaleconversion/](http://eddieshen.gitee.io/scaleconversion/ "大兔兔牌比例尺转换器")就可以啦。
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1.  输入比例尺；
+2.  如果要获取原始长度画在图上的位置，输入原来的长度，点击`原来→图上`按钮就可以啦；
+3.  如果要获取图上长度在实际中的长度，输入图上的长度，点击`图上→原来`按钮就可以啦。
