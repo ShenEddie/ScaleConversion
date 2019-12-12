@@ -56,8 +56,6 @@
 </div>
 
 
-
-
 <script>
     function paperToOriginal() {
         let lengthMeter = 0;
@@ -65,12 +63,16 @@
         let scaleRate = document.getElementById("denominator").value;
         let lengthMeterOriginalScale;
         let lengthOriginal;
-        newLength = parseFloat(newLength);
-        scaleRate = parseFloat(scaleRate);
+        newLength = Number(newLength);
+        scaleRate = Number(scaleRate);
         lengthMeter = otherUnitToMeter(newLength, "unitNew");
         lengthMeterOriginalScale = lengthMeter * scaleRate;
-        lengthOriginal = meterUnitToOther(lengthMeterOriginalScale, "unitOriginal")
-        document.getElementById("originalLength").value = lengthOriginal;
+        lengthOriginal = meterUnitToOther(lengthMeterOriginalScale, "unitOriginal");
+        if (lengthOriginal) {
+            document.getElementById("originalLength").value = lengthOriginal;
+        } else {
+            alert("请我的大宝贝看一下有没有输错哦！！！");
+        }
     }
 
     function originalToPaper() {
@@ -79,12 +81,16 @@
         let scaleRate = document.getElementById("denominator").value;
         let lengthMeterNewScale;
         let lengthPaper;
-        originalLength = parseFloat(originalLength);
-        scaleRate = parseFloat(scaleRate);
+        originalLength = Number(originalLength);
+        scaleRate = Number(scaleRate);
         lengthMeter = otherUnitToMeter(originalLength, "unitOriginal");
         lengthMeterNewScale = lengthMeterToNewScale(lengthMeter, scaleRate);
         lengthPaper = meterUnitToOther(lengthMeterNewScale, "unitNew");
-        document.getElementById("newLength").value = lengthPaper;
+        if (lengthPaper) {
+            document.getElementById("newLength").value = lengthPaper;
+        } else {
+            alert("请我的大宝贝看一下有没有输错哦！！！");
+        }
     }
 
     function lengthMeterToNewScale(lengthMeter, scaleRate) {
@@ -93,31 +99,32 @@
 
     function meterUnitToOther(lengthMeterNewScale, select) {
         let newUnit = getSelectedValue(select);
-        if (newUnit == "m") {
+        if (newUnit === "m") {
             return lengthMeterNewScale;
-        } else if (newUnit == "cm") {
+        } else if (newUnit === "cm") {
             return lengthMeterNewScale * 100;
-        } else if (newUnit == "mm") {
+        } else if (newUnit === "mm") {
             return lengthMeterNewScale * 1000;
         }
     }
 
     function otherUnitToMeter(originalLength, select) {
         let originalUnit = getSelectedValue(select);
-        if (originalUnit == "m") {
+        if (originalUnit === "m") {
             return originalLength;
-        } else if (originalUnit == "cm") {
+        } else if (originalUnit === "cm") {
             return originalLength / 100;
-        } else if (originalUnit == "mm") {
+        } else if (originalUnit === "mm") {
             return originalLength / 1000;
         }
     }
 
     function getSelectedValue(select) {
+        let text;
         let obj = document.getElementById(select);
         for (i = 0; i < obj.length; i++) {
-            if (obj[i].selected == true) {
-                let text = obj[i].value;
+            if (obj[i].selected) {
+                text = obj[i].value;
                 return text;
             }
         }
