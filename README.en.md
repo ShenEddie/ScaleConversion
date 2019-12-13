@@ -29,5 +29,6 @@ Browser website [http://eddieshen.gitee.io/scaleconversion/](http://eddieshen.gi
 #### Instructions
 
 1.  Input the scale;
-2.  If you want to obtain the length on paper based on original length, you need to input the original length and click `原来→图上` button;
-3.  If you want to obtain the original length based on the length on paper, you need to input the length on paper and click `图上→原来` button.
+2.  Choose the units to be convert;
+3.  If you want to obtain the length on paper based on original length, you need to input the original length and click `原来→图上` button;
+4.  If you want to obtain the original length based on the length on paper, you need to input the length on paper and click `图上→原来` button.
