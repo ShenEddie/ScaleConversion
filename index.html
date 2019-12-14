@@ -38,6 +38,7 @@
         <option value="mm">毫米</option>
         <option value="cm">厘米</option>
         <option value="m" selected>米</option>
+        <option value="km">千米</option>
     </select>
     <br/>
     图上的长度：
@@ -105,7 +106,9 @@
 
     function meterUnitToOther(lengthMeterNewScale, select) {
         let newUnit = getSelectedValue(select);
-        if (newUnit === "m") {
+        if (newUnit === "km") {
+            return lengthMeterNewScale / 1000;
+        } else if (newUnit === "m") {
             return lengthMeterNewScale;
         } else if (newUnit === "cm") {
             return lengthMeterNewScale * 100;
@@ -116,7 +119,9 @@
 
     function otherUnitToMeter(originalLength, select) {
         let originalUnit = getSelectedValue(select);
-        if (originalUnit === "m") {
+        if (originalUnit === "km") {
+            return originalLength * 1000;
+        } else if (originalUnit === "m") {
             return originalLength;
         } else if (originalUnit === "cm") {
             return originalLength / 100;
