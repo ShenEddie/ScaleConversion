@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2 style="text-align: center; width: auto">大兔兔牌比例尺转换器 v1.0</h2>
+<h2 style="text-align: center; width: auto">大兔兔🐰牌比例尺转换器</h2>
 
 <hr/>
 
@@ -16,7 +16,7 @@
 
 <hr/>
 
-<p>请我的大宝贝输入比例尺：</p>
+<p>请我的大宝贝输入比例尺❤️：</p>
 
 <form style="text-align: center">
     <fieldset>
@@ -30,7 +30,7 @@
 <br/>
 <hr/>
 
-<p>请我的大宝贝输入长度：</p>
+<p>请我的大宝贝输入长度并选择转换的单位😙：</p>
 <form style="text-align: center">
     原来的长度：
     <input type="text" id="originalLength" name="originalLength" size="10%">
@@ -51,12 +51,18 @@
 
 <br/>
 <div style="text-align: center">
-    <button name="originalToPaper" onclick="originalToPaper()">原来→图上</button>
-    <button name="paperToOriginal" onclick="paperToOriginal()">图上→原来</button>
+    <button name="originalToPaper" onclick="originalToPaper()">原来➡️图上</button>
+    <button name="paperToOriginal" onclick="paperToOriginal()">图上➡️原来</button>
+    <button name="clearInputBox" onclick="clearInputBox()">清空输入框</button>
 </div>
 
 
 <script>
+    function clearInputBox() {
+        document.getElementById("originalLength").value = "";
+        document.getElementById("newLength").value = "";
+    }
+
     function paperToOriginal() {
         let lengthMeter = 0;
         let newLength = document.getElementById("newLength").value;
@@ -69,7 +75,7 @@
         lengthMeterOriginalScale = lengthMeter * scaleRate;
         lengthOriginal = meterUnitToOther(lengthMeterOriginalScale, "unitOriginal");
         if (lengthOriginal) {
-            document.getElementById("originalLength").value = lengthOriginal;
+            document.getElementById("originalLength").value = lengthOriginal.toFixed(3);
         } else {
             alert("请我的大宝贝看一下有没有输错哦！！！");
         }
@@ -87,7 +93,7 @@
         lengthMeterNewScale = lengthMeterToNewScale(lengthMeter, scaleRate);
         lengthPaper = meterUnitToOther(lengthMeterNewScale, "unitNew");
         if (lengthPaper) {
-            document.getElementById("newLength").value = lengthPaper;
+            document.getElementById("newLength").value = lengthPaper.toFixed(3);
         } else {
             alert("请我的大宝贝看一下有没有输错哦！！！");
         }
@@ -121,6 +127,7 @@
 
     function getSelectedValue(select) {
         let text;
+        let i;
         let obj = document.getElementById(select);
         for (i = 0; i < obj.length; i++) {
             if (obj[i].selected) {
