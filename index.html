@@ -54,6 +54,7 @@
 <div style="text-align: center">
     <button name="originalToPaper" onclick="originalToPaper()">原来➡️图上</button>
     <button name="paperToOriginal" onclick="paperToOriginal()">图上➡️原来</button>
+    <button name="calculateRate" onclick="calculateRate()">计算比例尺</button>
     <button name="clearInputBox" onclick="clearInputBox()">清空输入框</button>
 </div>
 
@@ -62,6 +63,18 @@
     function clearInputBox() {
         document.getElementById("originalLength").value = "";
         document.getElementById("newLength").value = "";
+    }
+
+    function calculateRate() {
+        let originalLength = document.getElementById("originalLength").value;
+        originalLength = otherUnitToMeter(originalLength, "unitOriginal");
+        let newLength = document.getElementById("newLength").value;
+        newLength = otherUnitToMeter(newLength, "unitNew");
+        if (originalLength && newLength) {
+            document.getElementById("denominator").value = (originalLength / newLength).toFixed(2);
+        } else {
+            alert("请我的大宝贝看一下有没有漏填数据哦!")
+        }
     }
 
     function paperToOriginal() {
@@ -74,7 +87,7 @@
         scaleRate = Number(scaleRate);
         lengthMeter = otherUnitToMeter(newLength, "unitNew");
         lengthMeterOriginalScale = lengthMeter * scaleRate;
-        lengthOriginal = meterUnitToOther(lengthMeterOriginalScale, "unitOriginal");
+        lengthOriginal = meterToOtherUnit(lengthMeterOriginalScale, "unitOriginal");
         if (lengthOriginal) {
             document.getElementById("originalLength").value = lengthOriginal.toFixed(3);
         } else {
@@ -92,7 +105,7 @@
         scaleRate = Number(scaleRate);
         lengthMeter = otherUnitToMeter(originalLength, "unitOriginal");
         lengthMeterNewScale = lengthMeterToNewScale(lengthMeter, scaleRate);
-        lengthPaper = meterUnitToOther(lengthMeterNewScale, "unitNew");
+        lengthPaper = meterToOtherUnit(lengthMeterNewScale, "unitNew");
         if (lengthPaper) {
             document.getElementById("newLength").value = lengthPaper.toFixed(3);
         } else {
@@ -104,7 +117,7 @@
         return lengthMeter / scaleRate;
     }
 
-    function meterUnitToOther(lengthMeterNewScale, select) {
+    function meterToOtherUnit(lengthMeterNewScale, select) {
         let newUnit = getSelectedValue(select);
         if (newUnit === "km") {
             return lengthMeterNewScale / 1000;
